@@ -118,7 +118,7 @@ def call_command(command_name, *args, **options):
         for s_opt in parser._actions if s_opt.option_strings
     }
     arg_options = {opt_mapping.get(key, key): value for key, value in options.items()}
-    defaults = parser.parse_args(args=[force_text(a) for a in args])
+    defaults = parser.parse_args(args=[force_text(a).encode('gbk') for a in args])
     defaults = dict(defaults._get_kwargs(), **arg_options)
     # Move positional args out of options to mimic legacy optparse
     args = defaults.pop('args', ())
